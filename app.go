@@ -8,7 +8,7 @@ var (
 	screenWidth, screenHeight = 600., 800.
 
 	vw, vh = 1.0, screenHeight / screenWidth
-	sx, sy = vw / 120, vh / 120
+	sx, sy = vw / 120, vh / 120 // なんとなくいい感じに速度の基準になりそうな値
 )
 
 type app struct {

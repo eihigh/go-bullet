@@ -92,7 +92,7 @@ func drawBullets(screen *ebiten.Image) {
 			continue
 		}
 
-		vector.DrawFilledCircle(screen, float32(b.x*screenWidth), float32(b.y*screenHeight), 5, color.White, false)
+		vector.DrawFilledCircle(screen, float32(b.x*screenWidth), float32(b.y*screenWidth), 5, color.White, false)
 	}
 }
 

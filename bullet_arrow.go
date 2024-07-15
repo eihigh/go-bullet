@@ -1,11 +1,11 @@
 package main
 
 func fireArrowBullet(x, y, dir float64) {
-	fireAccelBullet(x, y, dir, sy/5, sy/1.02, 180)
+	fireAccelBullet(x, y, dir, sy/3, sy/1.02, 180)
 	fire2way := func(dd, speed float64) {
 		dd /= 1.5
-		fireAccelBullet(x, y, dir+dd, sy/5, speed, 180)
-		fireAccelBullet(x, y, dir-dd, sy/5, speed, 180)
+		fireAccelBullet(x, y, dir+dd, sy/3, speed, 180)
+		fireAccelBullet(x, y, dir-dd, sy/3, speed, 180)
 	}
 	fire2way(tau/120, sy/1.1)
 	fire2way(tau/60, sy/1.2)
