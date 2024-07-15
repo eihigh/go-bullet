@@ -6,6 +6,9 @@ import (
 
 var (
 	screenWidth, screenHeight = 600., 800.
+
+	vw, vh = 1.0, screenHeight / screenWidth
+	sx, sy = vw / 120, vh / 120
 )
 
 type app struct {
@@ -30,7 +33,7 @@ func (a *app) Update() error {
 		return ebiten.Termination
 	}
 	if _, running := a.top(); !running {
-		return ebiten.Termination
+		// return ebiten.Termination
 	}
 	updateBullets()
 	return nil

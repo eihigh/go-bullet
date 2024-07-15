@@ -58,8 +58,8 @@ func updateBullets() {
 	j := 0
 	for _, b := range bullets {
 		// 画面外チェック
-		margin := 100.
-		if b.x < -margin || b.x > screenWidth+margin || b.y < -margin || b.y > screenHeight+margin {
+		margin := vw / 10
+		if b.x < -margin || b.x > vw+margin || b.y < -margin || b.y > vh+margin {
 			b.deleted = true
 		}
 		if b.deleted {
@@ -72,10 +72,8 @@ func updateBullets() {
 		j++
 
 		// 更新
-		_, running := b.next()
-		if !running {
-			b.deleted = true
-		}
+		// コルーチンが終了しても消さない
+		b.next()
 		y, x := math.Sincos(b.dir)
 		b.x += x * b.speed
 		b.y += y * b.speed
@@ -94,7 +92,7 @@ func drawBullets(screen *ebiten.Image) {
 			continue
 		}
 
-		vector.DrawFilledCircle(screen, float32(b.x), float32(b.y), 5, color.White, false)
+		vector.DrawFilledCircle(screen, float32(b.x*screenWidth), float32(b.y*screenHeight), 5, color.White, false)
 	}
 }
 
