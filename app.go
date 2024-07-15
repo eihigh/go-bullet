@@ -15,7 +15,6 @@ type app struct {
 
 func main() {
 	a := &app{}
-	a.top, a.stop = newCoro(top)
 
 	ebiten.SetWindowSize(600, 800)
 	if err := ebiten.RunGame(a); err != nil {
@@ -24,6 +23,9 @@ func main() {
 }
 
 func (a *app) Update() error {
+	if a.top == nil {
+		a.top, a.stop = newCoro(top)
+	}
 	if ebiten.IsKeyPressed(ebiten.KeyQ) {
 		return ebiten.Termination
 	}
