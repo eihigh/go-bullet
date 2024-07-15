@@ -4,10 +4,15 @@ import (
 	"fmt"
 	"image/color"
 	"iter"
+	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/hajimehoshi/ebiten/v2/vector"
+)
+
+const (
+	tau = math.Pi * 2
 )
 
 var (
@@ -71,6 +76,9 @@ func updateBullets() {
 		if !running {
 			b.deleted = true
 		}
+		y, x := math.Sincos(b.dir)
+		b.x += x * b.speed
+		b.y += y * b.speed
 	}
 
 	// 切り詰める
