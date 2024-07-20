@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
 )
 
 var (
@@ -12,8 +13,9 @@ var (
 )
 
 type app struct {
-	top  func() (empty, bool)
-	stop func()
+	top   func() (empty, bool)
+	stop  func()
+	pause bool
 }
 
 func main() {
@@ -29,9 +31,16 @@ func (a *app) Update() error {
 	if a.top == nil {
 		a.top, a.stop = newCoro(top)
 	}
-	if ebiten.IsKeyPressed(ebiten.KeyQ) {
+	if ebiten.IsKeyPressed(ebiten.KeyR) {
 		return ebiten.Termination
 	}
+	if inpututil.IsKeyJustPressed(ebiten.KeyP) {
+		a.pause = !a.pause
+	}
+	if a.pause {
+		return nil
+	}
+
 	if _, running := a.top(); !running {
 		// return ebiten.Termination
 	}
