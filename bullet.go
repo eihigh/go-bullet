@@ -2,13 +2,11 @@ package main
 
 import (
 	"fmt"
-	"image/color"
 	"iter"
 	"math"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/hajimehoshi/ebiten/v2/vector"
 )
 
 const (
@@ -87,12 +85,16 @@ func drawBullets(screen *ebiten.Image) {
 	msg := fmt.Sprint("bullets: ", len(bullets))
 	ebitenutil.DebugPrint(screen, msg)
 
+	opt := &ebiten.DrawImageOptions{}
 	for _, b := range bullets {
 		if b.deleted {
 			continue
 		}
 
-		vector.DrawFilledCircle(screen, float32(b.x*screenWidth), float32(b.y*screenWidth), 5, color.White, false)
+		// vector.DrawFilledCircle(screen, float32(b.x*screenWidth), float32(b.y*screenWidth), 5, color.White, false)
+		opt.GeoM.Reset()
+		opt.GeoM.Translate(b.x*screenWidth, b.y*screenWidth)
+		screen.DrawImage(circle, opt)
 	}
 }
 
