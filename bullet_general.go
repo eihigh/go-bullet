@@ -37,8 +37,11 @@ func fireAccelBullet(x, y, dir, fromSpeed, toSpeed float64, duration int) {
 }
 
 func (b *accelBullet) action(yield yield0) {
-	for _, t := range seq(b.duration) {
-		b.speed = mix(b.fromSpeed, b.toSpeed, t)
-		yield()
-	}
+	term(yield, b.duration, &b.speed, b.fromSpeed, b.toSpeed)
+	// equivalent:
+	// for _, t := range seq(b.duration) {
+	// 	b.speed = mix(b.fromSpeed, b.toSpeed, t)
+	// 	yield()
+	// }
+	// b.speed = b.toSpeed
 }

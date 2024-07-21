@@ -147,6 +147,14 @@ func seq(n int) iter.Seq2[int, float64] {
 	}
 }
 
+func term(yield yield0, duration int, dest *float64, start, end float64) {
+	for _, t := range seq(duration) {
+		*dest = mix(start, end, t)
+		yield()
+	}
+	*dest = end
+}
+
 func mix(a, b, t float64) float64 {
 	return a + (b-a)*t
 }
