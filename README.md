@@ -11,5 +11,5 @@ go install github.com/makiuchi-d/arelo@latest
 Start live reloading:
 
 ```
-arelo -p '**/*.go' -i '**/.*' -i '**/*_test.go' -- run-wsl.sh
+arelo -p '**/*.go' -i '**/.*' -i '**/*_test.go' -- ./run-wsl.sh
 ```
