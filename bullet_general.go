@@ -15,7 +15,7 @@ func fireSimpleBullet(x, y, dir, speed float64) {
 	fire(&b.bullet, b.action)
 }
 
-func (b *simpleBullet) action(next next) {
+func (b *simpleBullet) action(yield yield0) {
 }
 
 type accelBullet struct {
@@ -36,9 +36,9 @@ func fireAccelBullet(x, y, dir, fromSpeed, toSpeed float64, duration int) {
 	fire(&b.bullet, b.action)
 }
 
-func (b *accelBullet) action(next next) {
+func (b *accelBullet) action(yield yield0) {
 	for _, t := range seq(b.duration) {
 		b.speed = mix(b.fromSpeed, b.toSpeed, t)
-		next()
+		yield()
 	}
 }

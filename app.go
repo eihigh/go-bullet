@@ -61,7 +61,7 @@ func (a *app) Update() error {
 		vector.DrawFilledCircle(circle, 5, 5, 5, color.White, true)
 	}
 	if a.top == nil {
-		a.top, a.stop = newCoro(top)
+		a.top, a.stop = pull0(top)
 	}
 	if ebiten.IsKeyPressed(ebiten.KeyR) {
 		return ebiten.Termination
@@ -76,6 +76,7 @@ func (a *app) Update() error {
 	if _, running := a.top(); !running {
 		// return ebiten.Termination
 	}
+	updateCoros()
 	updateBullets()
 	return nil
 }
